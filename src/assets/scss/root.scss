@@ -1,0 +1,39 @@
+// COLORS
+
+
+$clear: #FFFFFF;
+$dark: #1D1D1D;
+$dark-light: #363636;
+$red: #ce3333;
+
+
+// PAGES
+
+
+$page-color: $dark;
+$header-color: $clear;
+$footer-color: $clear;
+
+
+// SIZES
+
+
+$header-size: 64px;
+$main-size: 1fr;
+$footer-size: 128px;
+$card-title-size: 14px;
+
+
+// GAPS
+
+
+$out-gap: 24px;
+$inside-gap: 12px;
+
+// DIFFERENTS
+
+
+$center: 0 auto;
+$shadow: 0 4px 8px rgba($color: $dark, $alpha: 0.25);
+$card-shadow: 0 0 8px rgba($color: $dark, $alpha: 0.5);
+$transition: ease-in-out 0.2s;

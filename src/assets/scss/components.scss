@@ -1,0 +1,259 @@
+// CARDS
+
+.card{
+    position: relative;
+    width: inherit; height: inherit;
+    box-shadow: $card-shadow;
+    &_title{
+        position: absolute;
+        top: 24px;
+        left: -12px;
+    }
+    &__content{
+        position: absolute;
+        width: 512px;
+        min-height: 420px;
+        background-color: $clear;
+        pointer-events: none;
+        &-top{
+            position: relative;
+            height: 256px;
+            box-shadow: $shadow;
+            .date{
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                bottom: 0; left: 0;
+                padding: 6px 12px;
+                color: $clear;
+                background-color: rgba($color: $dark, $alpha: 0.32);
+            }
+        }
+        &-down{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-height: 364px;
+            padding: 6px;
+            &>*{margin-bottom: 12px;};
+            &>*:nth-last-child(1){margin-bottom: 0;};
+            .descriptions{
+                font-size: 16px;
+            }
+            .rates{
+            }
+        }
+    }
+}
+
+.card-movie{
+    width: 256px;
+    height: 364px;
+}
+
+
+// STARS
+
+
+.stars{
+    &__container{
+        position: relative;
+        display: inline-flex;
+    }
+    .star{font-size: 24px;}
+    
+    .star-inner{
+        position: absolute;
+        top: 0; left: 0;
+        overflow: hidden;
+        width: 0;
+    }
+    .star-out::before,.star-inner::before{
+        content: "\f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+    .star-out::before{color: $dark;}
+    .star-inner::before{color: $red;}
+}
+
+
+// GENRES
+
+
+.genres{
+    display: flex;
+    gap: $inside-gap;
+    flex-wrap: wrap;
+    .genre{
+        min-width: 86px;
+        padding: 4px 8px;
+        color: $clear;
+        background-color: $red;
+        border: 2px;
+        text-align: center;
+    }
+}
+
+
+// AGES
+
+
+.age_title{
+    position: absolute;
+    top: 12px; right: 12px;
+    padding: 12px 13px;
+    color: $clear;
+    background-color: $red;
+    border-radius: 4px;
+}
+
+
+// SLIDERS
+
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    gap: $out-gap;
+    &__container{
+        height: 300px;
+        overflow: hidden;
+        .slideshow{
+            display: flex;
+            height: inherit;
+            img{
+                padding: 6px;
+                border-radius: 12px;
+            }
+        }
+    }
+    &__btns{
+        display: flex;
+        justify-content: center;
+        gap: $out-gap;
+    }
+}
+
+
+// SECTIONS
+
+.section{
+    &__content{
+        padding: 24px 0;
+        max-width: 1640px;
+        height: inherit;
+        margin: 0 auto;
+    }
+}
+
+.movies{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(128px,224px));
+    grid-auto-rows: 320px;
+    justify-content: space-between;
+    gap: $out-gap;
+    &__header{
+        display: flex;
+        .searh{width: 50%;}
+    }
+    .card-movie{
+        width: inherit;
+        height: inherit;
+        opacity: 0.64;
+        @extend %card-movie;
+    }
+}
+
+.section-movie{
+    display: flex;
+    flex-direction: column;
+    &__header{
+        min-height: 420px;
+        padding: 24px;
+        &-content{
+            display: flex;
+            gap: $out-gap;
+            .movie__header-content__left{
+                .card-movie{
+                    .stars{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        bottom: 6px;
+                        left: 0;
+                        .star{
+                            font-size: 18px;
+                            &-out::before{color: $dark;}
+                            &-inner::before{color: $clear;}
+                        }
+                    }
+                    .age_title{ 
+                        color: $clear;
+                        background-color: $red;
+                        font-size: 16px;
+                    }
+                }
+            }
+            .movie__header-content__right{
+                display: flex;
+                flex-direction: column;
+                gap: $out-gap;
+                flex-grow: 1;
+
+                .titles{&>*{margin-bottom: 6px;} &>*:nth-last-child(1){margin-bottom: 0;}}
+                .title,.date{color: $clear;}
+                .title{font-weight: bold; font-size: 24px;}
+                .date{font-size: 16px;}
+                
+                .descriptions{
+                    flex-grow: 1;
+                    color: $clear;
+                    &>*{margin-bottom: 12px;}
+                    &>*:nth-last-child(1){margin-bottom: 0;}
+                }
+            }
+        }
+    }
+    &__main{
+        display: flex;
+        flex-direction: column;
+        gap: $out-gap;
+        flex-grow: 1;
+    }
+}
+
+.codec{
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    width: 100%;
+    height: 640px;
+    .video{
+        object-fit: cover;
+        width: inherit;
+        height: inherit;
+    }
+}
+
+
+.main_container{
+    position: relative;
+}
+
+.preview{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+}
+
+.btn-round{
+    width: 24px;
+    height: 24px;
+    background-color: $clear;
+    border-radius: 32px;
+}

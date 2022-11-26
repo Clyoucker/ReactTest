@@ -1,0 +1,11 @@
+// HOVERS
+
+
+%card-movie{
+    transition: $transition;
+    &:hover{
+        opacity: 1;
+        transform: translateY(-5px);
+        z-index: 2;
+    }
+}
