@@ -6,7 +6,8 @@ import FilterGenres from "../components/Filters/FilterGenres";
 import FilterDates from "../components/Filters/FilterDates";
 import FilterStatus from "../components/Filters/FilterStatus";
 import FilterRates from "../components/Filters/FilterRates";
-import ClassCardMovies from "../components/Cards/ClassCardMovies";
+
+import ClassCardMovies from "../components/Classes/ClassCardMovies";
 
 const Movie = () => {
 

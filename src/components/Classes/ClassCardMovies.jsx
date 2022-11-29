@@ -1,6 +1,6 @@
 import React from "react";
 
-import CardMovie from "./CardMovie";
+import CardMovie from "../Cards/CardMovie";
 
 import Constants from "../Constants/Constants";
 

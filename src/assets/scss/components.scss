@@ -3,50 +3,60 @@
 
 .card{
     position: relative;
-    width: inherit; height: inherit;
+    width: 256px; height: 364px;
     box-shadow: $card-shadow;
-}
-
-.card-movie{
-    width: 256px;
-    height: 364px;
-    &_title{
+    &-movie{
+        width: 100%;
+        height: 100%;
+        opacity: 0.64;
+        @extend %card-movie;
+        &_title{
         position: absolute;
         top: 24px;
         left: -12px;
         pointer-events: none;
-    }
-    .visible{animation: ShowCardContent 0.75s;}
-    &__content{
-        position: absolute;
-        width: 512px;
-        min-height: 320px;
-        background-color: $clear;
-        pointer-events: none;
-        &-top{
-            position: relative;
-            height: 256px;
-            box-shadow: $shadow;
-            .date{
-                position: absolute;
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                bottom: 0; left: 0;
-                padding: 6px 12px;
-                color: $clear;
-                background-color: rgba($color: $dark, $alpha: 0.32);
-            }
         }
-        &-down{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            min-height: 256px;
-            gap: $inside-gap;
-            padding: 6px;
-            .descriptions{font-size: 16px;}
-            .status,.episodes,.descriptions{color: $dark;}
+        &__content{
+            &-pc{
+                position: absolute;
+                width: 512px;
+                min-height: 320px;
+                background-color: $clear;
+                pointer-events: none;
+                &__top{
+                    position: relative;
+                    height: 256px;
+                    box-shadow: $shadow;
+                    .date{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        bottom: 0; left: 0;
+                        padding: 6px 12px;
+                        color: $clear;
+                        background-color: rgba($color: $dark, $alpha: 0.32);
+                    }
+                }
+                &__down{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    min-height: 256px;
+                    gap: $inside-gap;
+                    padding: 6px;
+                    .descriptions{font-size: 16px;}
+                    .status,.episodes,.descriptions{color: $dark;}
+                }
+            }
+            &-mobile{
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                .mini-rate{z-index: 6;}
+                &>*{margin-bottom: $inside-gap;}
+                &>*:nth-last-child(1){margin-bottom: 0;}
+            }
         }
     }
 }
@@ -179,12 +189,7 @@
         grid-auto-rows: 320px;
         justify-content: space-between;
         gap: $out-gap;
-        .card-movie{
-            width: inherit;
-            height: inherit;
-            opacity: 0.64;
-            @extend %card-movie;
-        }
+        .card{width: inherit; height: inherit;}
     }
 }
 

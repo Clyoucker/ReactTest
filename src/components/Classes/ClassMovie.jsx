@@ -1,6 +1,6 @@
 import React from "react";
 
-import Genre from "../components/Different/Genre";
+import Genre from "../Different/Genre";
 
 const ClassMovie = ({props}) => {
 

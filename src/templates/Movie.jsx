@@ -1,6 +1,6 @@
 import React from "react";
 
-import ClassMovie from "./ClassMovie";
+import ClassMovie from "../components/Classes/ClassMovie";
 
 import Constants from "../components/Constants/Constants";
 
