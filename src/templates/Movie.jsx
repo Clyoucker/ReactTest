@@ -1,26 +1,24 @@
 import React from "react";
 
-import InputSearch from "../components/Modules/InputSearch";
-import FilterAge from "../components/Filters/FilterAge";
-import ClassCardMovies from "../components/Cards/ClassCardMovies";
+import ClassMovie from "./ClassMovie";
 
-const Movie = () => {
+import Constants from "../components/Constants/Constants";
+
+const MovieOne = () => {
+
+  const movies = Constants.movies
+
+  let id = Number(window.location.href.split("Anime/")[1])
 
   return (
     <main className="main">
-      <section className="section section-search">
-        <div className="section__content">
-          <InputSearch />
-          <FilterAge />
-        </div>
-      </section>
-      <section className="section section-movies">
-        <div className="section__content">
-          <ClassCardMovies />
+      <section className="section section-movie">
+        <div className="content content_row">
+          {movies.map(movie => (movie.id === id ? <ClassMovie key={movie.id} props={movie} /> : ""))}
         </div>
       </section>
     </main>
-  );
+  )
 }
 
-export default Movie;
+export default MovieOne;

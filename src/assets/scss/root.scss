@@ -11,8 +11,8 @@ $red: #ce3333;
 
 
 $page-color: $dark;
-$header-color: $clear;
-$footer-color: $clear;
+$header-color: rgba($color: #000000, $alpha: 0.42);
+$footer-color: rgba($color: #000000, $alpha: 0.64);
 
 
 // SIZES
@@ -20,9 +20,9 @@ $footer-color: $clear;
 
 $header-size: 64px;
 $main-size: 1fr;
-$footer-size: 128px;
+$footer-size: 364px;
 $card-title-size: 14px;
-
+$player-title-size: 42px;
 
 // GAPS
 

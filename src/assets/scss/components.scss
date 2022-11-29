@@ -1,18 +1,26 @@
 // CARDS
 
+
 .card{
     position: relative;
     width: inherit; height: inherit;
     box-shadow: $card-shadow;
+}
+
+.card-movie{
+    width: 256px;
+    height: 364px;
     &_title{
         position: absolute;
         top: 24px;
         left: -12px;
+        pointer-events: none;
     }
+    .visible{animation: ShowCardContent 0.75s;}
     &__content{
         position: absolute;
         width: 512px;
-        min-height: 420px;
+        min-height: 320px;
         background-color: $clear;
         pointer-events: none;
         &-top{
@@ -34,27 +42,73 @@
             display: flex;
             flex-direction: column;
             justify-content: space-around;
-            min-height: 364px;
+            min-height: 256px;
+            gap: $inside-gap;
             padding: 6px;
-            &>*{margin-bottom: 12px;};
-            &>*:nth-last-child(1){margin-bottom: 0;};
-            .descriptions{
-                font-size: 16px;
-            }
-            .rates{
-            }
+            .descriptions{font-size: 16px;}
+            .status,.episodes,.descriptions{color: $dark;}
         }
     }
 }
 
-.card-movie{
-    width: 256px;
-    height: 364px;
+
+
+
+
+
+// CODEC
+
+
+.player{
+    &__titles{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $out-gap;
+        margin-bottom: 12px;
+    }
+    .codec{
+        display: grid;
+        grid-template-columns: minmax(820px,1fr) minmax(164px,364px);
+        grid-auto-rows: 640px;
+        &__video{}
+        &__menu{
+            background-color: $clear;
+            overflow-y: auto;
+            box-shadow: -2px 0 6px rgba($color: $dark, $alpha: 0.25);
+        }
+    }
 }
 
 
-// STARS
 
+.episodes{
+    .episode{
+        position: relative;
+        padding: $inside-gap;
+        @extend %episode;
+        &::after{
+            position: absolute;
+            content: "";
+            left: 0; bottom: 0;
+            width: 100%; height: 1px;
+            background-color: $red;
+            pointer-events: none;
+        }
+    }
+    .episode_active{
+        color: $dark;
+        background-color: $red;
+        box-shadow: 0 0 6px rgba($color: $red, $alpha: 0.8);
+    }
+}
+
+// DIFFERENTS
+
+.green{background-color: #25df35;}
+.yellow{background-color: #929c32;}
+.red{background-color: $red;}
+.nav__item_active>a{color: $red;}
 
 .stars{
     &__container{
@@ -78,9 +132,13 @@
     .star-inner::before{color: $red;}
 }
 
-
-// GENRES
-
+.mini-rate{
+    position: absolute;
+    top: -12px; left: -12px;
+    padding: 12px;
+    color: $clear;
+    border-radius: 32px;
+}
 
 .genres{
     display: flex;
@@ -93,167 +151,69 @@
         background-color: $red;
         border: 2px;
         text-align: center;
+        cursor: pointer;
+        @extend %genre;
     }
 }
 
-
-// AGES
-
-
-.age_title{
-    position: absolute;
-    top: 12px; right: 12px;
-    padding: 12px 13px;
-    color: $clear;
-    background-color: $red;
-    border-radius: 4px;
-}
-
-
-// SLIDERS
-
-
-.slider{
-    display: flex;
-    flex-direction: column;
-    gap: $out-gap;
-    &__container{
-        height: 300px;
-        overflow: hidden;
-        .slideshow{
-            display: flex;
-            height: inherit;
-            img{
-                padding: 6px;
-                border-radius: 12px;
-            }
-        }
-    }
-    &__btns{
-        display: flex;
-        justify-content: center;
-        gap: $out-gap;
-    }
-}
-
+.status{.span{color: $red;}color: $clear;}
+.episodes{.span{color: $red;}color: $clear;}
 
 // SECTIONS
 
 .section{
-    &__content{
-        padding: 24px 0;
+    .content{
+        padding: 24px 16px;
         max-width: 1640px;
+        width: 100%;
         height: inherit;
         margin: 0 auto;
     }
 }
 
-.movies{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(128px,224px));
-    grid-auto-rows: 320px;
-    justify-content: space-between;
-    gap: $out-gap;
-    &__header{
-        display: flex;
-        .searh{width: 50%;}
-    }
-    .card-movie{
-        width: inherit;
-        height: inherit;
-        opacity: 0.64;
-        @extend %card-movie;
+
+.section-movies{
+    .content_row{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(128px,224px));
+        grid-auto-rows: 320px;
+        justify-content: space-between;
+        gap: $out-gap;
+        .card-movie{
+            width: inherit;
+            height: inherit;
+            opacity: 0.64;
+            @extend %card-movie;
+        }
     }
 }
 
 .section-movie{
-    display: flex;
-    flex-direction: column;
-    &__header{
-        min-height: 420px;
-        padding: 24px;
-        &-content{
+    .movie{
+        &>*{margin-bottom: $out-gap;}
+        &>*:nth-last-child(1){margin-bottom: 0;}
+        .preview{
             display: flex;
             gap: $out-gap;
-            .movie__header-content__left{
-                .card-movie{
-                    .stars{
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        width: 100%;
-                        bottom: 6px;
-                        left: 0;
-                        .star{
-                            font-size: 18px;
-                            &-out::before{color: $dark;}
-                            &-inner::before{color: $clear;}
-                        }
-                    }
-                    .age_title{ 
-                        color: $clear;
-                        background-color: $red;
-                        font-size: 16px;
-                    }
-                }
-            }
-            .movie__header-content__right{
+            .card{flex-shrink: 0;}
+            &__info{
                 display: flex;
                 flex-direction: column;
-                gap: $out-gap;
+                gap: $inside-gap;
                 flex-grow: 1;
-
-                .titles{&>*{margin-bottom: 6px;} &>*:nth-last-child(1){margin-bottom: 0;}}
-                .title,.date{color: $clear;}
-                .title{font-weight: bold; font-size: 24px;}
-                .date{font-size: 16px;}
-                
-                .descriptions{
-                    flex-grow: 1;
-                    color: $clear;
-                    &>*{margin-bottom: 12px;}
-                    &>*:nth-last-child(1){margin-bottom: 0;}
+                &-titles{
+                    gap: $inside-gap;
                 }
             }
         }
+        .descriptions{color: $clear;}
     }
-    &__main{
+}
+
+.section-search{
+    .content_row{
         display: flex;
-        flex-direction: column;
-        gap: $out-gap;
-        flex-grow: 1;
+        .input-search{flex-grow: 8;}
+        .filter{flex-grow: 1;}
     }
-}
-
-.codec{
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    width: 100%;
-    height: 640px;
-    .video{
-        object-fit: cover;
-        width: inherit;
-        height: inherit;
-    }
-}
-
-
-.main_container{
-    position: relative;
-}
-
-.preview{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: inherit;
-    height: inherit;
-}
-
-.btn-round{
-    width: 24px;
-    height: 24px;
-    background-color: $clear;
-    border-radius: 32px;
 }

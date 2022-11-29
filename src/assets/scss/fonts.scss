@@ -1,0 +1,35 @@
+// TITLES
+
+.title{
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.card-movie_title{
+    padding: 4px 6px;
+    max-width: 224px;
+    color: $clear;
+    background-color: $red;
+    font-size: $card-title-size;
+}
+
+.card-movie_age{
+    position: absolute;
+    top: 12px; right: 12px;
+    padding: 12px 13px;
+    color: $clear;
+    background-color: $red;
+    border-radius: 4px;
+}
+
+.movie_eng_title{font-size: 32px; color: $clear;}
+.movie_rus_title{font-size: 18px; color: $clear;}
+
+.player_title{
+    color: $clear;
+    font-size: $player-title-size;
+}
+
+.player_age{
+    color: rgba($color: $clear, $alpha: 0.24);
+}

@@ -1,19 +1,10 @@
-@keyframes Show{
+@keyframes ShowCardContent{
     0%{
-        transform: translateY(6px);
+        transform: translateY(12px);
         opacity: 0;
     }
     100%{
         transform: translateY(0);
         opacity: 1;
-    }
-}
-
-@keyframes Hiden{
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
     }
 }

@@ -1,6 +1,6 @@
 .page{
     background-color: $page-color;
-    .container{
+    .content{
         max-width: 1640px;
         height: inherit;
         margin: $center;
@@ -16,6 +16,19 @@
             z-index: 999;
             &-body{
                 height: 100%;
+                .content_row{
+                    display: flex;
+                    align-items: center;
+                    gap: $out-gap;
+                    .nav{
+                        flex-grow: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: $out-gap;
+                        &__item>a{@extend %nav-item;}
+                    }
+                }
             }
         }
         .main{
@@ -23,6 +36,7 @@
             height: 100%;
         }
         .footer{
+            background-color: $footer-color;
             .footer_container{
                 padding-top: 32px;
                 padding-bottom: 32px;

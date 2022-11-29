@@ -5,7 +5,31 @@
     transition: $transition;
     &:hover{
         opacity: 1;
-        transform: translateY(-5px);
         z-index: 2;
+    }
+}
+
+%episode{
+    transition: $transition;
+    &:hover{
+        color: $dark;
+        background-color: $red;
+        box-shadow: 0 0 6px rgba($color: $red, $alpha: 0.8);
+    }
+}
+
+%genre{
+    transition: $transition;
+    &:hover{
+        color: $red;
+        background-color: $clear;
+        box-shadow: 0 0 6px rgba($color: $red, $alpha: 0.8);
+    }
+}
+
+%nav-item{
+    transition: $transition;
+    &:hover{
+        color: $red;
     }
 }
