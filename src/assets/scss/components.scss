@@ -17,6 +17,7 @@
         pointer-events: none;
         }
         &__content{
+            .visible{animation: ShowCardContent 0.75s;}
             &-pc{
                 position: absolute;
                 width: 512px;
@@ -168,6 +169,7 @@
 
 .status{.span{color: $red;}color: $clear;}
 .episodes{.span{color: $red;}color: $clear;}
+.age{.span{color: $red;}color: $clear;}
 
 // SECTIONS
 

@@ -73,9 +73,30 @@ body::-webkit-scrollbar-thumb {
 }
 
 @font-face {
-  font-family: "Anton";
-  src: url("../fonts/Anton-Regular.ttf");
+  font-family: "Josefin";
+  src: url("../fonts/JosefinSans-Medium.ttf");
 }
+@font-face {
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Medium.ttf");
+}
+@font-face {
+  font-family: "NanumGothic";
+  src: url("../fonts/NanumGothic-Regular.ttf");
+}
+.eng_title, .movie_eng_title, .player_title, .player_age {
+  font-family: "Josefin";
+}
+
+.rus_title, .movie_rus_title {
+  font-family: "Comfortaa";
+}
+
+.descriptions {
+  font-family: "NanumGothic";
+  line-height: 26px;
+}
+
 .title {
   font-weight: normal;
   font-size: 24px;
@@ -97,11 +118,6 @@ body::-webkit-scrollbar-thumb {
   color: #FFFFFF;
   background-color: #ce3333;
   border-radius: 4px;
-}
-
-.eng_title {
-  font-family: "Anton";
-  letter-spacing: 2px;
 }
 
 .movie_eng_title {
@@ -337,6 +353,10 @@ body::-webkit-scrollbar-thumb {
   left: -12px;
   pointer-events: none;
 }
+.card-movie__content .visible {
+  -webkit-animation: ShowCardContent 0.75s;
+          animation: ShowCardContent 0.75s;
+}
 .card-movie__content-pc {
   position: absolute;
   width: 512px;
@@ -538,6 +558,13 @@ body::-webkit-scrollbar-thumb {
   color: #ce3333;
 }
 
+.age {
+  color: #FFFFFF;
+}
+.age .span {
+  color: #ce3333;
+}
+
 .section .content {
   padding: 24px 16px;
   max-width: 1640px;
@@ -654,37 +681,32 @@ body::-webkit-scrollbar-thumb {
 
 @-webkit-keyframes ShowCardContent {
   0% {
-    -webkit-transform: translateY(12px);
-            transform: translateY(12px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes ShowCardContent {
   0% {
-    -webkit-transform: translateY(12px);
-            transform: translateY(12px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
     opacity: 1;
   }
 }
 @media (max-width: 100vw) {
-  .card-movie__content-mobile {
-    display: none;
-  }
   .player .codec {
     -ms-grid-columns: minmax(420px, 1fr) minmax(164px, 224px);
     grid-template-columns: minmax(420px, 1fr) minmax(164px, 224px);
-    grid-auto-rows: 420px;
+    grid-auto-rows: 640px;
+  }
+  .card-movie__content-mobile {
+    display: none;
+  }
+  .section-movie .content_row .movie .preview .card-movie {
+    opacity: 1;
   }
 }
 @media (max-width: 1023px) {
@@ -711,6 +733,7 @@ body::-webkit-scrollbar-thumb {
         flex-shrink: 0;
     width: 186px;
     height: 256px;
+    opacity: 1;
   }
   .section-movies .content_row .card-movie_title {
     top: 42px;

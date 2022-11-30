@@ -1,6 +1,5 @@
 import React from "react";
 
-import InputSearch from "../components/Modules/InputSearch";
 import FilterAge from "../components/Filters/FilterAge";
 import FilterGenres from "../components/Filters/FilterGenres";
 import FilterDates from "../components/Filters/FilterDates";
@@ -10,12 +9,11 @@ import FilterRates from "../components/Filters/FilterRates";
 import ClassCardMovies from "../components/Classes/ClassCardMovies";
 
 const Movie = () => {
-
   return (
     <main className="main">
       <section className="section section-search">
         <div className="content content_row">
-          <InputSearch />
+          <input id="search" className="input input-search" type="search" placeholder="Search Movies"></input>
           <FilterDates />
           <FilterStatus />
           <FilterGenres />

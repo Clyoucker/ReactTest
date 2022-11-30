@@ -1,8 +1,12 @@
 @media(max-width: 100vw) {
+    .player .codec{grid-template-columns: minmax(420px,1fr) minmax(164px,224px); grid-auto-rows: 640px;}
     .card-movie__content-mobile{display: none;}
-    .player .codec{
-        grid-template-columns: minmax(420px,1fr) minmax(164px,224px);
-        grid-auto-rows: 420px;
+    .section-movie .content_row{
+        .movie{
+            .preview{
+                .card{&-movie{opacity: 1;}}
+            }
+        }
     }
 }
 
@@ -16,6 +20,7 @@
             &-movie{
                 flex-shrink: 0;
                 width: 186px; height: 256px;
+                opacity: 1;
                 &_title{top: 42px; max-width: 186px; font-size: 12px;}
                 &__content-mobile{
                     display: block;

@@ -4,11 +4,17 @@ import Genre from "../Different/Genre";
 
 const ClassMovie = ({props}) => {
 
+  if(props.age === 18){
+    alert("Внимание, материал предназначен для лиц, старше 18 лет")
+  }
+
   return (
     <div className="movie">
       <div className="preview">
-        <div className="card card-movie" id={props.id} style={{backgroundImage:`url('${props.poster}')`,backgroundSize:"cover"}}>
-          <div className={(props.rate > 8 ? "mini-rate green" : (props.rate > 4 ? "mini-rate yellow" : "mini-rate red"))}>{props.rate}</div>
+        <div className="card" id={props.id}>
+          <div className="card-movie" style={{backgroundImage:`url('${props.poster}')`,backgroundSize:"cover"}}>
+            <div className={(props.rate > 8 ? "mini-rate green" : (props.rate > 4 ? "mini-rate yellow" : "mini-rate red"))}>{props.rate}</div>
+          </div>
         </div>
         <div className="preview__info">
           <div className="preview__info-titles">
@@ -17,6 +23,7 @@ const ClassMovie = ({props}) => {
           </div>
           <div className="episodes"><span className="span">Episodes: </span>{props.episodes !== undefined ? props.episodes : "0/?"}</div>
           <div className="status"><span className="span">Status: </span>{props.status !== undefined ? props.status : "?"}</div>
+          <div className="age"><span className="span">Age: </span>{props.age !== undefined ? props.age + "+" : "0+"}</div>
           <div className="genres">
             {props.genres.map(genre => <Genre key={genre} props={genre} />)}
           </div>

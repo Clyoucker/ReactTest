@@ -13,7 +13,6 @@ const CardMovie = ({props})=>{
         let card = document.getElementById(id);
         let contents = card.children[1];
         let content = contents.children[0];
-        console.log(content)
 
         let cardWidth = card.clientWidth;
 
@@ -21,7 +20,9 @@ const CardMovie = ({props})=>{
         let xPosWindow = section.getBoundingClientRect();
 
         card.style.zIndex = "5";
-        (xPosContent.right+16 > xPosWindow.right) ? content.style.right = (cardWidth + 24)+"px" :  content.style.left = (cardWidth + 24)+"px";
+        content.style.top = null;
+        content.style.left = null;
+        (xPosContent.right+8 > xPosWindow.right) ? content.style.right = (cardWidth + 24)+"px" :  content.style.left = (cardWidth + 24)+"px";
         (xPosContent.bottom > xPosWindow.bottom) ? content.style.bottom = "0px" : content.style.top = "0px";
 
         content.classList.remove("hiden");
@@ -35,7 +36,10 @@ const CardMovie = ({props})=>{
         content.classList.remove("visible");
         content.classList.add("hiden");
         card.style = null;
-        content.style = null;
+        content.style.right = null;
+        content.style.bottom = null;
+        content.style.left = 0;
+        content.style.top = 0;
     }
 
 
@@ -45,7 +49,7 @@ const CardMovie = ({props})=>{
                 <h2 className="title card-movie_title eng_title">{props.titleEng}</h2>
             </div>
             <div className="card-movie__content">
-                <div className="card-movie__content-pc hiden">
+                <div className="card-movie__content-pc hiden" style={{left:"0px",top:"0px"}}>
                     <div className="card-movie__content-pc__top" style={{backgroundImage:`url('${props.bg}')`,backgroundSize:"cover"}}>
                         <h3 className="title card-movie_title rus_title">{props.titleRus}</h3>
                         <h3 className="title card-movie_age">{props.age}+</h3>
