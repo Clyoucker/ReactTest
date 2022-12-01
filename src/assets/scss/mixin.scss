@@ -1,5 +1,13 @@
 // HOVERS
 
+%btn{
+    transition: $transition;
+    &:hover{
+        color: $clear;
+        background-color: $red;
+        box-shadow: 0 0 6px rgba($color: $red, $alpha: 0.8);
+    }
+}
 
 %card-movie{
     transition: $transition;

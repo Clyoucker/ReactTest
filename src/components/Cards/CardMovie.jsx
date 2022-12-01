@@ -9,10 +9,13 @@ const CardMovie = ({props})=>{
     let link = basePath+props.id
 
     const show = (id) => {
-        let section = document.getElementById("movies")
+        let section = document.getElementById("movies");
         let card = document.getElementById(id);
         let contents = card.children[1];
         let content = contents.children[0];
+
+        content.classList.add("ops");
+        content.classList.remove("hiden");
 
         let cardWidth = card.clientWidth;
 
@@ -25,7 +28,7 @@ const CardMovie = ({props})=>{
         (xPosContent.right+8 > xPosWindow.right) ? content.style.right = (cardWidth + 24)+"px" :  content.style.left = (cardWidth + 24)+"px";
         (xPosContent.bottom > xPosWindow.bottom) ? content.style.bottom = "0px" : content.style.top = "0px";
 
-        content.classList.remove("hiden");
+        content.classList.remove("ops");
         content.classList.add("visible");
     }
 
@@ -56,7 +59,7 @@ const CardMovie = ({props})=>{
                         <h3 className="date">{props.dateRelease}</h3>
                     </div>
                     <div className="card-movie__content-pc__down">
-                        <div className="descriptions">{props.descriptions.length < 256 ? props.descriptions : props.descriptions.slice(0,256)+"[...]"}</div>
+                        <div className="descriptions">{props.descriptions.length < 186 ? props.descriptions : props.descriptions.slice(0,186)+"[...]"}</div>
                         <div className="episodes"><span className="span">Episodes: </span>{props.episodes !== undefined ? props.episodes : "0/?"}</div>
                         <div className="status"><span className="span">Status: </span>{props.status !== undefined ? props.status : "?"}</div>
                         <div className="genres">{props.genres.map(genre => <Genre key={genre} props={genre} />)}</div>
@@ -76,7 +79,7 @@ const CardMovie = ({props})=>{
                     <div className="episodes"><span className="span">Episodes: </span>{props.episodes !== undefined ? props.episodes : "0/?"}</div>
                     <div className="status"><span className="span">Status: </span>{props.status !== undefined ? props.status : "?"}</div>
                     <div className="genres">{props.genres.map(genre => <Genre key={genre} props={genre} />)}</div>
-                    <div className="descriptions">{props.descriptions.length < 256 ? props.descriptions : props.descriptions.slice(0,256)+"[...]"}</div>
+                    <div className="descriptions">{props.descriptions.length < 186 ? props.descriptions : props.descriptions.slice(0,186)+"[...]"}</div>
                 </div>
             </div>
         </Link>
