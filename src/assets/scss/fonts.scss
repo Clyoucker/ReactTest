@@ -17,12 +17,17 @@
 .eng_title,.movie_eng_title,.player_title,.player_age{font-family: "Josefin";}
 .rus_title,.movie_rus_title{font-family: "Comfortaa";}
 .descriptions{font-family: "NanumGothic"; line-height: 26px;}
+.footer-description{font-family: "Josefin"; color: rgba($color: $clear, $alpha: 0.5); font-size: 16px;}
 
 // TITLES
 
 .title{
     font-weight: normal;
     font-size: 24px;
+}
+
+.footer_title{
+    color: $footer-title-color;
 }
 
 .card-movie_title{

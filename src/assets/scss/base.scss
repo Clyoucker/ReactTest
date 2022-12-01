@@ -39,71 +39,61 @@
         }
         .footer{
             background-color: $footer-color;
-            .footer_container{
-                padding-top: 32px;
-                padding-bottom: 32px;
-                height: inherit;
-            }
             &-body{
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                flex-grow: 1;
-                width: 100%;
-                height: 100%;
+                width: 100%; height: 100%;
                 margin: 0 auto;
-                &-desktop{
+                .content_row{
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
+                    padding-top: 24px; padding-bottom: 24px;
                     height: inherit;
-                    .footer-navigation{
+                }
+                .footer-description{
+                    &>*{margin-bottom: 6px;}
+                    &>*:nth-last-child(1){margin-bottom: 0;}
+                }
+                .footer-navigation{
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    gap: 6px;
+                    .ul-footer{
                         position: relative;
                         display: flex;
-                        justify-content: space-between;
-                        width: 100%;
-                        &__element{
-                            position: relative;
+                        flex-direction: column;
+                        align-items: center;
+                        flex-grow: 1;
+                        .footer_title{margin-bottom: 12px;}
+                        &::after{
+                            position: absolute;
+                            content: "";
+                            width: 2px;
+                            height: 100%;
+                            background-color: $clear;
+                            top: 0;
+                            right: 0;
+                        }
+                        &:nth-last-child(1)::after{width: 0; height: 0;}
+                    }
+                }
+                .footer-developers{
+                    display: flex;
+                    justify-content: space-between;
+                    gap: $out-gap;
+                    width: 100%;
+                    .mini-developers{
+                        display: flex;
+                        flex-wrap: wrap;
+                        .mini-developer{
                             display: flex;
-                            flex-direction: column;
                             align-items: center;
-                            flex-grow: 1;
-                            .footer_title_ul{margin-bottom: 12px;}
-    
-                            ul{
-                                display: flex;
-                                flex-direction: column;
-                            }
-    
-                            &::after{
-                                position: absolute;
-                                content: "";
-                                width: 2px;
-                                height: 100%;
-                                background-color: $clear;
-                                top: 0;
-                                right: 0;
-                            }
-                            &:nth-last-child(1)::after{width: 0; height: 0;}
                         }
                     }
-                    .footer-developers{
+                    .icons{
                         display: flex;
-                        justify-content: space-between;
-                        gap: $out-gap;
-                        width: 100%;
-                        .mini-developers{
-                            display: flex;
-                            flex-wrap: wrap;
-                            .mini-developer{
-                                display: flex;
-                                align-items: center;
-                            }
-                        }
-                        .icons{
-                            display: flex;
-                            flex-wrap: wrap;
-                        }
+                        flex-wrap: wrap;
                     }
                 }
             }

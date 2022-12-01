@@ -1,16 +1,11 @@
 import React from "react";
 
 import FooterLink from "./FooterLink";
-
-import { BrowserRouter } from "react-router-dom";
-
-const FooterColumn = ({column}) => {
+const FooterColumn = ({props}) => {
     return (
-        <ul key={column.key} className = "ul ul-footer">
-            <h2 className = "title title_footer">{column.footerTitle}</h2>
-            <BrowserRouter>
-                {column.footerLinks.map((link) => <FooterLink link={link} />)}
-            </BrowserRouter>
+        <ul key={props.key} className = "ul ul-footer">
+            <h2 className = "title footer_title">{props.title}</h2>
+            {props.links.map(link => <FooterLink key={link.text} link={link} />)}
         </ul>
     )
 }

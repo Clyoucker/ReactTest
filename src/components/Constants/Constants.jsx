@@ -550,7 +550,7 @@ const Constants = {
         },
         ],
     ages:[
-        {classes:"dropdown-age",labels:[
+        {classes:"dropdown-age",key:"ages",labels:[
             {id:"age-18",text:"18+"},
             {id:"age-16",text:"16+"},
             {id:"age-14",text:"14+"},
@@ -560,7 +560,7 @@ const Constants = {
             ]},
         ],
     rates:[
-        {classes:"dropdown-rate",labels:[
+        {classes:"dropdown-rate",key:"rates",labels:[
             {id:"rate-0",text:"0"},
             {id:"rate-1",text:"1"},
             {id:"rate-2",text:"2"},
@@ -575,7 +575,7 @@ const Constants = {
             ]},
         ],
     years:[
-        {classes:"dropdown-year",labels:[
+        {classes:"dropdown-year",key:"years",labels:[
             {id:"year-1997",text:"1997"},
             {id:"year-1998",text:"1998"},
             {id:"year-1999",text:"1999"},
@@ -605,7 +605,7 @@ const Constants = {
             ]},
         ],
     genres:[
-        {classes:"dropdown-genre",labels:[
+        {classes:"dropdown-genre",key:"genres",labels:[
             {id:"genre-comedy",text:"Comedy"},
             {id:"genre-parody",text:"Parody"},
             {id:"genre-romance",text:"Romance"},

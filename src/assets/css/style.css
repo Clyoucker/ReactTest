@@ -101,9 +101,19 @@ body::-webkit-scrollbar-thumb {
   line-height: 26px;
 }
 
+.footer-description {
+  font-family: "Josefin";
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+}
+
 .title {
   font-weight: normal;
   font-size: 24px;
+}
+
+.footer_title {
+  color: #FFFFFF;
 }
 
 .card-movie_title {
@@ -218,30 +228,12 @@ body::-webkit-scrollbar-thumb {
 .page .wrapper .footer {
   background-color: rgba(0, 0, 0, 0.64);
 }
-.page .wrapper .footer .footer_container {
-  padding-top: 32px;
-  padding-bottom: 32px;
-  height: inherit;
-}
 .page .wrapper .footer-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   width: 100%;
   height: 100%;
   margin: 0 auto;
 }
-.page .wrapper .footer-body-desktop {
+.page .wrapper .footer-body .content_row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,9 +244,17 @@ body::-webkit-scrollbar-thumb {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
   height: inherit;
 }
-.page .wrapper .footer-body-desktop .footer-navigation {
+.page .wrapper .footer-body .footer-description > * {
+  margin-bottom: 6px;
+}
+.page .wrapper .footer-body .footer-description > *:nth-last-child(1) {
+  margin-bottom: 0;
+}
+.page .wrapper .footer-body .footer-navigation {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -263,8 +263,9 @@ body::-webkit-scrollbar-thumb {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  gap: 6px;
 }
-.page .wrapper .footer-body-desktop .footer-navigation__element {
+.page .wrapper .footer-body .footer-navigation .ul-footer {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -280,19 +281,10 @@ body::-webkit-scrollbar-thumb {
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
-.page .wrapper .footer-body-desktop .footer-navigation__element .footer_title_ul {
+.page .wrapper .footer-body .footer-navigation .ul-footer .footer_title {
   margin-bottom: 12px;
 }
-.page .wrapper .footer-body-desktop .footer-navigation__element ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.page .wrapper .footer-body-desktop .footer-navigation__element::after {
+.page .wrapper .footer-body .footer-navigation .ul-footer::after {
   position: absolute;
   content: "";
   width: 2px;
@@ -301,11 +293,11 @@ body::-webkit-scrollbar-thumb {
   top: 0;
   right: 0;
 }
-.page .wrapper .footer-body-desktop .footer-navigation__element:nth-last-child(1)::after {
+.page .wrapper .footer-body .footer-navigation .ul-footer:nth-last-child(1)::after {
   width: 0;
   height: 0;
 }
-.page .wrapper .footer-body-desktop .footer-developers {
+.page .wrapper .footer-body .footer-developers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,14 +307,14 @@ body::-webkit-scrollbar-thumb {
   gap: 24px;
   width: 100%;
 }
-.page .wrapper .footer-body-desktop .footer-developers .mini-developers {
+.page .wrapper .footer-body .footer-developers .mini-developers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.page .wrapper .footer-body-desktop .footer-developers .mini-developers .mini-developer {
+.page .wrapper .footer-body .footer-developers .mini-developers .mini-developer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -330,7 +322,7 @@ body::-webkit-scrollbar-thumb {
       -ms-flex-align: center;
           align-items: center;
 }
-.page .wrapper .footer-body-desktop .footer-developers .icons {
+.page .wrapper .footer-body .footer-developers .icons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

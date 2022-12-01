@@ -8,7 +8,7 @@ const Movie = () => {
 
   //const [searh,setSearh] = useState(null);
   const [filter,setFilter] = useState([
-    {useFilter:false,useSearh:null,useYears:[2018],useAges:[null],useRates:[null],useGenres:[null]},
+    {useFilter:false,useSearh:null,useYears:[null],useAges:[null],useRates:[null],useGenres:[null]},
   ])
 
   const Searhind = (txt) => {
@@ -17,7 +17,7 @@ const Movie = () => {
 
   useEffect(()=>{
 
-  })
+  },[filter])
 
   const dropDown = (dropdownId,btnId) => {
     let btn = document.getElementById(btnId);;
@@ -33,6 +33,7 @@ const Movie = () => {
     dropdown.classList.toggle("ops");
   }
 
+
   return (
     <main className="main">
       <section className="section section-search">
@@ -40,19 +41,19 @@ const Movie = () => {
           <input id="search" onChange={(e) => Searhind(e.target.value.toLowerCase())} className="input input-search" type="search" placeholder="Search Movies"></input>
           <div className="dropdown-menu">
             <button id="dropdown-btn-year" onClick={() => dropDown("dropdown-year","dropdown-btn-year")} className="btn dropdown-btn">Years</button>
-              <CheckBoxLists props={Constants.years[0]} />
+              <CheckBoxLists key="box-list-years" props={Constants.years[0]} />
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-age" onClick={() => dropDown("dropdown-age","dropdown-btn-age")} className="btn dropdown-btn">Ages</button>
-              <CheckBoxLists props={Constants.ages[0]} />
+              <CheckBoxLists key="check-box-ages" props={Constants.ages[0]} />
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-rate" onClick={() => dropDown("dropdown-rate","dropdown-btn-rate")} className="btn dropdown-btn">Rates</button>
-              <CheckBoxLists props={Constants.rates[0]} />
+              <CheckBoxLists key="check-box-rates" props={Constants.rates[0]} />
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-genre" onClick={() => dropDown("dropdown-genre","dropdown-btn-genre")} className="btn dropdown-btn">Genres</button>
-              <CheckBoxLists props={Constants.genres[0]} />
+              <CheckBoxLists key="check-box-genres" props={Constants.genres[0]} />
           </div>
         </div>
       </section>
