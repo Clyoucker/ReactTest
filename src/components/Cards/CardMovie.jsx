@@ -18,6 +18,7 @@ const CardMovie = ({props})=>{
         content.classList.remove("hiden");
 
         let cardWidth = card.clientWidth;
+        let cardHeight = card.clientHeight;
 
         let xPosContent = content.getBoundingClientRect();
         let xPosWindow = section.getBoundingClientRect();
@@ -25,8 +26,12 @@ const CardMovie = ({props})=>{
         card.style.zIndex = "5";
         content.style.top = null;
         content.style.left = null;
+        
         (xPosContent.right+8 > xPosWindow.right) ? content.style.right = (cardWidth + 24)+"px" :  content.style.left = (cardWidth + 24)+"px";
         (xPosContent.bottom > xPosWindow.bottom) ? content.style.bottom = "0px" : content.style.top = "0px";
+        if(xPosContent.bottom > xPosWindow.bottom && xPosContent.top > xPosWindow.top){
+            content.style.bottom = -(content.clientHeight - cardHeight)/2 + "px";
+        }
 
         content.classList.remove("ops");
         content.classList.add("visible");
@@ -39,8 +44,7 @@ const CardMovie = ({props})=>{
         content.classList.remove("visible");
         content.classList.add("hiden");
         card.style = null;
-        content.style.right = null;
-        content.style.bottom = null;
+        content.style = null;
         content.style.left = 0;
         content.style.top = 0;
     }

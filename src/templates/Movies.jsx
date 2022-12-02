@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Constants from "../components/Constants/Constants";
 import CheckBoxLists from "../components/Different/CheckBoxLists";
@@ -6,13 +6,12 @@ import ClassCardMovies from "../components/Classes/ClassCardMovies";
 
 const Movie = () => {
 
-  //const [searh,setSearh] = useState(null);
   const [filter,setFilter] = useState([
-    {useFilter:false,useSearh:[],useYears:[],useAges:[],useRates:[],useGenres:[]},
+    {useFilter:true,useSearh:[],useYears:[],useAges:[],useRates:[],useGenres:[]},
   ])
 
   const Searhind = (txt) => {
-    setFilter({useSearh:txt})
+    setFilter("Filter Search: ",txt)
   }
 
   const findIndex = (value,list) => {
@@ -22,34 +21,34 @@ const Movie = () => {
   }
 
   const Checker = () => {
-    let checkCount = 5;
+    let checkCount = 0;
     let status = filter[0].useFilter;
-
-    for (let [key, value] of Object.entries(filter[0])) {
-      if(value.length === 0){checkCount--}
-    }
+    if(filter[0].useYears.length > 0){checkCount++}
+    if(filter[0].useAges.length > 0){checkCount++}
+    if(filter[0].useRates.length > 0){checkCount++}
+    if(filter[0].useGenres.length > 0){checkCount++}
     (checkCount >= 1 ? status=true : status=false)
     console.log("Filter Used: ",status)
   }
 
   const setCheckBoxAge = (checkBoxId,value) => {
+    let ages = filter[0].useAges
     const checkBox = document.getElementById(checkBoxId);
     (checkBox.classList.contains("checkbox_active") === true ? checkBox.classList.toggle("checkbox_active") : checkBox.classList.toggle("checkbox_active"));
     if(checkBox.classList.contains("checkbox_active")){
-      setFilter({useAges:filter[0].useAges.push(value)})
-      //ages.push(value);
+      ages.push(value)
     } else {
-      let index = findIndex(value,filter[0].useAges);
-      (index === 0 ? setFilter({useAges:filter[0].useAges.shift()}) : setFilter({useAges:filter[0].useAges.splice(index,index)}))
-      //(index === 0 ? ages.shift()  : ages.splice(index,index));
+      let index = findIndex(value,ages);
+      (index === 0 ? ages.shift() : ages.splice(index,index))
+
     }
     Checker()
     console.log("Filter Ages: ",filter[0].useAges)
   }
 
   const setCheckBoxRate = (checkBoxId,value) => {
+    let rates = filter[0].useAges
     const checkBox = document.getElementById(checkBoxId);
-    let rates = filter[0].useRates;
     (checkBox.classList.contains("checkbox_active") === true ? checkBox.classList.toggle("checkbox_active") : checkBox.classList.toggle("checkbox_active"));
     if(checkBox.classList.contains("checkbox_active")){
       rates.push(value);
@@ -61,9 +60,7 @@ const Movie = () => {
     console.log("Filter Rates: ",rates)
   }
 
-
   useEffect(()=>{
-    console.log(filter)
   },[filter])
 
   const dropDown = (dropdownId,btnId) => {
