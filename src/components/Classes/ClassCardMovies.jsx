@@ -7,15 +7,16 @@ class ClassCardMovies extends React.Component{
     
     constructor({props}){
         super();
+        console.log(props)
         this.state={
             movies:Constants.movies,
-            filter:props.useFilter,
-            searh:props.useSearh,
-            ages:props.useAges,
-            years:props.useYears,
-            rates:props.useRates,
-            genres:props.useGenres,
-            keys:null,
+            filter:false,
+            //searh:props.useSearh,
+            //ages:props.useAges,
+            years:props,
+            //rates:props.useRates,
+            //genres:props.useGenres,
+            keys:[],
         }
     }
 

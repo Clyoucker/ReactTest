@@ -1,18 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Constants from "../components/Constants/Constants";
-import CheckBoxLists from "../components/Different/CheckBoxLists";
-import ClassCardMovies from "../components/Classes/ClassCardMovies";
+import CardMovie from "../components/Cards/CardMovie";
+// import ClassCardMovies from "../components/Classes/ClassCardMovies";
 
 const Movie = () => {
 
-  const [filter,setFilter] = useState([
-    {useFilter:true,useSearh:[],useYears:[],useAges:[],useRates:[],useGenres:[]},
-  ])
-
-  const Searhind = (txt) => {
-    setFilter("Filter Search: ",txt)
-  }
+  const [search,setSearch] = useState([])
+  const [years,setYears] = useState([])
+  const [ages,setAges] = useState([])
+  const [rates,setRates] = useState([])
+  const [genres,setGenres] = useState([])
+  const [keys,setKeys] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32])
 
   const findIndex = (value,list) => {
     for(let i = 0; i < list.length; i++){
@@ -20,48 +19,50 @@ const Movie = () => {
     }
   }
 
-  const Checker = () => {
-    let checkCount = 0;
-    let status = filter[0].useFilter;
-    if(filter[0].useYears.length > 0){checkCount++}
-    if(filter[0].useAges.length > 0){checkCount++}
-    if(filter[0].useRates.length > 0){checkCount++}
-    if(filter[0].useGenres.length > 0){checkCount++}
-    (checkCount >= 1 ? status=true : status=false)
-    console.log("Filter Used: ",status)
-  }
-
-  const setCheckBoxAge = (checkBoxId,value) => {
-    let ages = filter[0].useAges
-    const checkBox = document.getElementById(checkBoxId);
-    (checkBox.classList.contains("checkbox_active") === true ? checkBox.classList.toggle("checkbox_active") : checkBox.classList.toggle("checkbox_active"));
-    if(checkBox.classList.contains("checkbox_active")){
-      ages.push(value)
+  const Filtration = (array,type) => {
+    let ids = [];
+    if(type === "searchs" && array[0].length !== 0){
+        let searh = array[0].toLowerCase();
+        Constants.movies.forEach(movie => {
+            (movie.titleEng.toLowerCase().startsWith(searh) ? ids.push(movie.id) : (movie.titleRus.toLowerCase().startsWith(searh) ? ids.push(movie.id)  : console.log("Not Searh")))
+        })
     } else {
-      let index = findIndex(value,ages);
-      (index === 0 ? ages.shift() : ages.splice(index,index))
-
+        let filterArray = [];
+        if(type === "ages"){filterArray.push(array,years,rates,genres)}
+        if(type === "years"){filterArray.push(ages,array,rates,genres)}
+        if(type === "rates"){filterArray.push(ages,years,array,genres)}
+        if(type === "genres"){filterArray.push(ages,years,rates,array)}
+            
+        Constants.movies.forEach(movie => {
+            let movieArray = [[movie.age],[Number(movie.dateRelease.split(".")[2])],[Math.floor(movie.rate)],movie.genres]
+            if(Proof(filterArray,movieArray) === true){ids.push(movie.id)}
+        });
     }
-    Checker()
-    console.log("Filter Ages: ",filter[0].useAges)
+    setKeys(ids)
+}
+
+  const Searhing = (searchText) => {
+    let array = Object.assign([],search);
+    (searchText.length > 0 ? array.push(searchText) : array.push([]))
+    setSearch(array);
+    Filtration(array,"searchs")
   }
 
-  const setCheckBoxRate = (checkBoxId,value) => {
-    let rates = filter[0].useAges
+  const setCheckBox = (checkBoxId,value,type) => {
     const checkBox = document.getElementById(checkBoxId);
-    (checkBox.classList.contains("checkbox_active") === true ? checkBox.classList.toggle("checkbox_active") : checkBox.classList.toggle("checkbox_active"));
-    if(checkBox.classList.contains("checkbox_active")){
-      rates.push(value);
-    } else {
-      let index = findIndex(value,rates);
-      (index === 0 ? rates.shift()  : rates.splice(index,index));
-    }
-    Checker()
-    console.log("Filter Rates: ",rates)
-  }
+    let array = Object.assign([],(type === "years" ? years : (type === "ages" ? ages : (type === "rates" ? rates : (type === "genres" ? genres : NaN)))));
 
-  useEffect(()=>{
-  },[filter])
+    (checkBox.classList.contains("checkbox_active") === true ? checkBox.classList.toggle("checkbox_active") : checkBox.classList.toggle("checkbox_active"));
+    
+    if(checkBox.classList.contains("checkbox_active")){array.push(value)} 
+    else{
+      let index = findIndex(value,array);
+      (index === 0 ? array.shift() : array.splice(index,index))
+    }
+
+    (type === "years" ? setYears(array) : (type === "ages" ? setAges(array) : (type === "rates" ? setRates(array) : (type === "genres" ? setGenres(array) : console.log("Error!")))))
+    Filtration(array,type)
+  }
 
   const dropDown = (dropdownId,btnId) => {
     let btn = document.getElementById(btnId);;
@@ -77,94 +78,71 @@ const Movie = () => {
     dropdown.classList.toggle("ops");
   }
 
+  const Proof = (lstStandart,lstCheck) => {
+    let res = [];
+    let count = 0;
+    lstStandart.forEach((item) => {
+        if(item.length > 0){count++}
+    });
+    
+    for(const filter of lstStandart){
+        for(const check of lstCheck){
+            let ss = filter.filter(x => check.includes(x))
+            if(ss.length > 0){res.push(ss[0])}
+        }
+    }
+
+    let result = (res.length === count ? true : false)
+    return (result === true ? true : false)
+  }
+
+  useEffect(()=>{
+
+  },[years,ages,rates,genres,keys])
 
   return (
     <main className="main">
       <section className="section section-search">
         <div className="content content_row">
-          <input id="search" onChange={(e) => Searhind(e.target.value.toLowerCase())} className="input input-search" type="search" placeholder="Search Movies"></input>
+          <input id="search" onChange={(e) => Searhing(e.target.value.toLowerCase())} className="input input-search" type="search" placeholder="Search Movies"></input>
           <div className="dropdown-menu">
             <button id="dropdown-btn-year" onClick={() => dropDown("dropdown-year","dropdown-btn-year")} className="btn dropdown-btn">Years</button>
-              <CheckBoxLists key="box-list-years" props={Constants.years[0]} />
+              <div key="years" id="dropdown-year" className="dropdown hiden">
+                <div className="dropdown-year">
+                  {Constants.years.map(year => <label key={year.id} id={year.id} className="checkbox"><input onClick={() => setCheckBox(year.id,Number(year.text),"years")} type="checkbox"/><span>{year.text}</span></label>)}
+                </div>
+              </div>
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-age" onClick={() => dropDown("dropdown-age","dropdown-btn-age")} className="btn dropdown-btn">Ages</button>
               <div key="ages" id="dropdown-age" className="dropdown hiden">
                 <div className="dropdown-age">
-                  <label id="age-18" className="checkbox">
-                    <input onClick={() => setCheckBoxAge("age-18",18)} type="checkbox"/>
-                    <span>18+</span>
-                  </label>
-                  <label id="age-16" className="checkbox">
-                    <input onClick={() => setCheckBoxAge("age-16",16)} type="checkbox"/>
-                    <span>16+</span>
-                  </label>
-                  <label id="age-14" className="checkbox">
-                    <input onClick={() => setCheckBoxAge("age-14",14)} type="checkbox"/>
-                    <span>14+</span>
-                  </label>
+                  {Constants.ages.map(age => <label key={age.id} id={age.id} className="checkbox"><input onClick={() => setCheckBox(age.id,Number(age.text.split("+")[0]),"ages")} type="checkbox"/><span>{age.text}</span></label>)}
                 </div>
               </div>
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-rate" onClick={() => dropDown("dropdown-rate","dropdown-btn-rate")} className="btn dropdown-btn">Rates</button>
               <div key="ages" id="dropdown-rate" className="dropdown hiden">
-                <div className="dropdown-age">
-                  <label id="rate-0" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-0",0)} type="checkbox"/>
-                    <span>0</span>
-                  </label>
-                  <label id="rate-1" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-1",1)} type="checkbox"/>
-                    <span>1</span>
-                  </label>
-                  <label id="rate-2" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-2",2)} type="checkbox"/>
-                    <span>2</span>
-                  </label>
-                  <label id="rate-3" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-3",3)} type="checkbox"/>
-                    <span>3</span>
-                  </label>
-                  <label id="rate-4" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-4",4)} type="checkbox"/>
-                    <span>4</span>
-                  </label>
-                  <label id="rate-5" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-5",5)} type="checkbox"/>
-                    <span>5</span>
-                  </label>
-                  <label id="rate-6" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-6",6)} type="checkbox"/>
-                    <span>6</span>
-                  </label>
-                  <label id="rate-7" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-7",7)} type="checkbox"/>
-                    <span>7</span>
-                  </label>
-                  <label id="rate-8" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-8",8)} type="checkbox"/>
-                    <span>8</span>
-                  </label>
-                  <label id="rate-9" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-9",9)} type="checkbox"/>
-                    <span>9</span>
-                  </label>
-                  <label id="rate-10" className="checkbox">
-                    <input onClick={() => setCheckBoxRate("rate-10",10)} type="checkbox"/>
-                    <span>10</span>
-                  </label>
+                <div className="dropdown-rate">
+                  {Constants.rates.map(rate => <label key={rate.id} id={rate.id} className="checkbox"><input onClick={() => setCheckBox(rate.id,Number(rate.text),"rates")} type="checkbox"/><span>{rate.text}</span></label>)}
                 </div>
               </div>
           </div>
           <div className="dropdown-menu">
             <button id="dropdown-btn-genre" onClick={() => dropDown("dropdown-genre","dropdown-btn-genre")} className="btn dropdown-btn">Genres</button>
-              <CheckBoxLists key="check-box-genres" props={Constants.genres[0]} />
+            <div key="ages" id="dropdown-genre" className="dropdown hiden">
+              <div className="dropdown-genre">
+                {Constants.genres.map(genre => <label key={genre.id} id={genre.id} className="checkbox"><input onClick={() => setCheckBox(genre.id,genre.text,"genres")} type="checkbox"/><span>{genre.text}</span></label>)}
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <section id="section-movies" className="section section-movies">
-        <ClassCardMovies props={filter[0]} />
+        <div id="movies" className="content content_row">
+          {keys.map(key => Constants.movies.map(movie => (movie.id === key ? <CardMovie key={movie.id} props={movie} /> : "")))}
+        </div>
       </section>
     </main>
   );
